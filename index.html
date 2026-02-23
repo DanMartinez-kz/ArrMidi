@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Piano Roll Mini</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<section class="panel">
+	<button id="play">▶︎ Play</button>
+	<button id="stop">■ Stop</button>
+	<button id="clear" data-ocultar="true">🗑️ Clear</button>
+	<div id="divBpm">
+		<label>BPM <span id="bpmValue">120</span></label>	
+		<input type="range" id="bpm" min="40" max="240" value="120">
+	</div>
+	<input type="file" id="zfileInput" style="display: none;">
+	<label id="contBPM" style="font-size: 40px">1</label>
+	<span id="chord"></span>
+	<button id="reproduccion">Modo Reproduccion</button>
+	<button id="saveStyle" data-ocultar="true">Cargar Style</button>
+	<button onclick="downloadNotes()" data-ocultar="true">Guardar Style</button>
+	<button id="loadPatron" data-ocultar="true">Cargar Patron</button>
+	<input type="file" id="fileInput" accept="application/json" style="display: none">
+	<select id="midiIn"></select>
+	<select id="midiOut"></select>
+	</section>
+
+<div id="partes" data-ocultar="true"></div>
+<div id="bases"></div>
+	
+	<section>
+		<dialog id="dlg">
+		<label>Instrumento</label>
+			<input type="text" id="instrumento"><br>
+			<label>Canal</label>
+			<input type="number" id="can" min="1" max="16" step="1"><br>
+	<label>Modo</label>
+	<select id="modo"></select><br>
+	<input type="number" id="rangI">
+	<input type="number" id="rangF">
+	<button onclick="cerrarDialogoP()">Aceptar</button>
+</dialog>
+
+<dialog id="opcP">
+    <label>Canal</label>
+    <input type="number" id="chn" min="1" max="16"><br>
+    <button onclick="cerrarDialogoOP()">Aceptar</button>
+</dialog>
+
+<dialog id="dlgV">
+    <label>Variante</label>
+    <input type="text" id="variant"><br>
+    <button onclick="cerrarDialogoV()">Aceptar</button>
+</dialog>
+	</section>
+	
+<div class="wrap" id="wrapId" data-ocultar="true">
+	<div class="keys"><canvas id="keys" width="50" height="420"></canvas></div>
+	<div class="roll"><canvas id="roll" width="880" height="420"></canvas></div>
+</div>
+
+<div id="variaciones"></div>
+	
+<!-- Scripts con defer para no bloquear la carga -->
+  <script src="js/data.js" defer></script>
+	  <script src="js/declarar.js" defer></script>
+  <script src="js/crearBtns.js" defer></script>
+  <script src="js/database-notes.js" defer></script>
+  <script src="js/apiMIDI.js" defer></script>
+  <script src="js/chordGen.js" defer></script>
+  <script src="js/sendMIDI.js" defer></script>
+  <script src="js/draw.js" defer></script>
+  <script src="js/create.js" defer></script>
+  <script src="js/loadJSON.js" defer></script>
+  <script src="js/reproduccion.js" defer></script>
+</body>
